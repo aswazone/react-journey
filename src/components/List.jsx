@@ -28,7 +28,7 @@ const List = () => {
   ];
 
 
-//   const [items,setItems] = useState(arr)
+  const [items,setItems] = useState(arr)
   const [value,setValue] = useState('All')
 
   const detectChange = (e) =>{
@@ -39,13 +39,18 @@ const List = () => {
 
   }
 
+  const handleDelete = (title) => {
+    const newItemsList = items.filter(item => item.title !== title);
+    setItems(newItemsList);
+  }
+
   //more convenient way of code writing
 //   code is the better approach because: ✅ It keeps the original list (arr) immutable.
 // ✅ Avoids unnecessary state updates, making it more performant.
 // ✅ Ensures that filtering happens only when rendering, without modifying the original data.
 // ✅ Less complexity and easier to debug.
 
-  const newList = arr.filter(data => {
+  const newList = items.filter(data => {
     if(value === 'All') {
         return true;
     }
@@ -65,7 +70,7 @@ const List = () => {
       {newList.map((item) => {
        return(
         <div key={item.title} className="app-list bg-light">
-          <ListItem title={item.title} desc={item.desc} isActive={item.isActive} />
+          <ListItem onDelete={handleDelete} title={item.title} desc={item.desc} isActive={item.isActive} />
         </div>
        ); 
       })}

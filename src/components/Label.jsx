@@ -1,5 +1,9 @@
-const Label = () => {
-    return <span className="bg-info px-1 rounded ">Label 1</span>
+const Label = (props) => {
+
+    const style = props.isActive ? 'bg-info' : 'bg-success'
+    const status = props.isActive ? 'Active' : 'Inactive'
+
+    return <span className={`${style} rounded px-2`} >{status}</span>
 }
 
 export default Label

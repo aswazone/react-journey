@@ -1,17 +1,38 @@
 import ListItem from "./ListItem";
 
 const List = () => {
-  const obj = {
-    title: "Appointment for October",
-    desc: "The patient is rescheduled to october",
-    isActive: true,
-  };
+  const arr = [
+    {
+      title: "Meeting with Team",
+      desc: "Discuss project milestones and deadlines",
+      isActive: true,
+    },
+    {
+      title: "Doctor's Appointment",
+      desc: "Annual health check-up",
+      isActive: false,
+    },
+    {
+      title: "Grocery Shopping",
+      desc: "Buy vegetables and fruits",
+      isActive: true,
+    },
+    {
+      title: "Workout Session",
+      desc: "Gym workout for 1 hour",
+      isActive: false,
+    },
+  ];
 
   return (
     <>
-      <div className="app-list">
-        <ListItem title={obj.title} desc={obj.desc} isActive={obj.isActive}/>
-      </div>
+      {arr.map((item) => {
+       return(
+        <div key={item.title} className="app-list">
+          <ListItem title={item.title} desc={item.desc} isActive={item.isActive} />
+        </div>
+       ); 
+      })}
     </>
   );
 };

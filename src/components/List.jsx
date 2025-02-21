@@ -1,26 +1,30 @@
 import { useState } from "react";
-import ListItem from "./ListItem";
+import SimpleList from "./SimpleList";
 import Tools from "./Tools";
 
 const List = () => {
 
   const arr = [
     {
+      id:1,
       title: "Meeting with Team",
       desc: "Discuss project milestones and deadlines",
       isActive: true,
     },
     {
+      id:2,
       title: "Doctor's Appointment",
       desc: "Annual health check-up",
       isActive: false,
     },
     {
+      id:3,
       title: "Grocery Shopping",
       desc: "Buy vegetables and fruits",
       isActive: true,
     },
     {
+      id:4,
       title: "Workout Session",
       desc: "Gym workout for 1 hour",
       isActive: false,
@@ -39,9 +43,14 @@ const List = () => {
 
   }
 
-  const handleDelete = (title) => {
-    const newItemsList = items.filter(item => item.title !== title);
+  const handleDelete = (id) => {
+    const newItemsList = items.filter(item => item.id !== id);
     setItems(newItemsList);
+  }
+
+  const handleLabelclick = (status) =>{
+    setValue(status)
+    // console.log(status)
   }
 
   //more convenient way of code writing
@@ -67,13 +76,7 @@ const List = () => {
   return (
     <>
     <Tools detectChange={detectChange}>
-      {newList.map((item) => {
-       return(
-        <div key={item.title} className="app-list bg-light">
-          <ListItem onDelete={handleDelete} title={item.title} desc={item.desc} isActive={item.isActive} />
-        </div>
-       ); 
-      })}
+      <SimpleList onAction={handleLabelclick} data={newList} onDelete={handleDelete}/>
     </Tools>
     </>
   );

@@ -1,0 +1,27 @@
+
+[
+    {
+        "id": 1,
+        "title": "Meeting with Team",
+        "desc": "Discuss project milestones and deadlines",
+        "isActive": true
+    },
+    {
+        "id": 2,
+        "title": "Doctor's Appointment",
+        "desc": "Annual health check-up",
+        "isActive": false
+    },
+    {
+        "id": 3,
+        "title": "Grocery Shopping",
+        "desc": "Buy vegetables and fruits",
+        "isActive": true
+    },
+    {
+        "id": 4,
+        "title": "Workout Session",
+        "desc": "Gym workout for 1 hour",
+        "isActive": false
+    }
+]

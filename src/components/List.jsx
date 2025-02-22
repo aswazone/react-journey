@@ -1,38 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SimpleList from "./SimpleList";
 import Tools from "./Tools";
 
 const List = () => {
 
-  const arr = [
-    {
-      id:1,
-      title: "Meeting with Team",
-      desc: "Discuss project milestones and deadlines",
-      isActive: true,
-    },
-    {
-      id:2,
-      title: "Doctor's Appointment",
-      desc: "Annual health check-up",
-      isActive: false,
-    },
-    {
-      id:3,
-      title: "Grocery Shopping",
-      desc: "Buy vegetables and fruits",
-      isActive: true,
-    },
-    {
-      id:4,
-      title: "Workout Session",
-      desc: "Gym workout for 1 hour",
-      isActive: false,
-    },
-  ];
+// fetching data from API as sideEffect ! 
+// (simillar to 'componentDidMount' ~~> useEffect({...},[]))  , ex: fetch,loading..
+// componentDidUpdate(prevProps,prevState)~~>, this workes actually in updating the components ,
+//  there is a check , to avoid maximum exeed or break of code ;
+
+  useEffect(()=>{
+    console.log('mounted !!')
+    fetch('/data.json')
+      .then((response)=>{
+        return response.json()
+      })
+      .then((data)=>{
+        console.log(data)
+        setItems(data)
+      })
+
+  },[])
 
 
-  const [items,setItems] = useState(arr)
+  const [items,setItems] = useState([])
   const [value,setValue] = useState('All')
 
   const detectChange = (e) =>{

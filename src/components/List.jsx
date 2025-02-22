@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import SimpleList from "./SimpleList";
+import { LabelContext } from "../context/LabelContext";
 import Tools from "./Tools";
 
 const List = () => {
@@ -64,11 +65,26 @@ const List = () => {
 })
 
 
+const [label,setLabel] = useState(true)
+
+const handleShowLabel = (e)=>{
+  setLabel(e.target.checked)
+} 
+
+
   return (
     <>
-    <Tools detectChange={detectChange}>
-      <SimpleList onAction={handleLabelclick} data={newList} onDelete={handleDelete}/>
-    </Tools>
+    <LabelContext.Provider value={label}>
+    <div className="bg-light p-2 m-2 border">
+      <div className="d-flex align-items-center" >
+        <input checked={label} onChange={handleShowLabel} type="checkbox" />
+        <label >: Show label</label>
+      </div>
+      <Tools detectChange={detectChange}>
+        <SimpleList onAction={handleLabelclick} data={newList} onDelete={handleDelete}/>
+      </Tools>
+    </div>
+    </LabelContext.Provider>
     </>
   );
 };

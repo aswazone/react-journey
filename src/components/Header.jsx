@@ -1,5 +1,5 @@
 const Header = ({handlePage}) => {
-
+  console.log('header')
   return (
     <>
       <nav className="app-header navbar navbar-light bg-light d-flex align-items-center px-3">

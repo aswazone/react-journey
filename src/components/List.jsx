@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import SimpleList from "./SimpleList";
+import JustInfo from "./JustInfo";
 import { LabelContext } from "../context/LabelContext";
 import Tools from "./Tools";
 
@@ -83,6 +84,7 @@ const handleShowLabel = (e)=>{
       <Tools detectChange={detectChange}>
         <SimpleList onAction={handleLabelclick} data={newList} onDelete={handleDelete}/>
       </Tools>
+      <JustInfo status={value}/>
     </div>
     </LabelContext.Provider>
     </>

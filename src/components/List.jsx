@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import SimpleList from "./SimpleList";
 import JustInfo from "./JustInfo";
 import { LabelContext } from "../context/LabelContext";
@@ -73,6 +73,50 @@ const handleShowLabel = (e)=>{
 } 
 
 
+// //let try to pass object as props to JustInfo !
+
+//     const keyPair = {
+//       'key':'wow'
+//     }
+
+// // this makes uncontrolled re-render.. because of , in next re-render consider as it makes an another object.
+// // object === object is false. because they comparing their references.
+// //  so React.memo() consider that new key pair is passing from here !
+// // for avoiding the problem ->  useMemo() 
+
+const keyPair = useMemo(()=>{
+  return {
+          'key':'wow'
+        }
+},[])                                  //  same as early, its returns that keyPair when mount componets. 
+                                      // working is like this --> first time dom nte element nte agath ingane value um oru dependency array um set cheyum -->   [keyPair , []]
+                                     //  ini eppozhokke render aavunno appo check chayyum.. ippo verunna array === dom le array, same key thanne 
+                                    // oru memoization pole returns cheyyum ! change indel puthiya value object kodukkum. appo render cheyyum
+
+//----> dependeny array case:
+//
+//      const keyPair = useMemo(()=>{
+//        return {
+//                'key':'wow',
+//                activeStatus:value                 // active status change cheyyunnafdhin anusarich useMemo return tharum, koode re- render cheyyum
+//              }                                   // 
+//      },[activeStatus])  
+
+
+// similarlly -> below here referance issue for arrow function;
+// for over come that using useMemo avoiding unconditional re-render
+
+// const handleClick = useMemo(()=>{
+//   return ()=> {
+//     console.log('cliked !!')
+//   }
+// },[])
+
+const handleClick = useCallback(()=> {                         //similarly to useMemo ,remove return, only function or callbacks handled by  useCallbacks()
+  console.log('cliked !!')
+},[])
+
+                                    
   return (
     <>
     <LabelContext.Provider value={label}>
@@ -84,7 +128,7 @@ const handleShowLabel = (e)=>{
       <Tools detectChange={detectChange}>
         <SimpleList onAction={handleLabelclick} data={newList} onDelete={handleDelete}/>
       </Tools>
-      <JustInfo status={value}/>
+      <JustInfo onAction={handleClick} keyPair={keyPair} status={value}/>
     </div>
     </LabelContext.Provider>
     </>

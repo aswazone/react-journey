@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-const JustInfo = ({status})=>{
+const JustInfo = ({status,onAction})=>{
 
   // project run cheyimbo , eppozhum ella componentneyum render cheyyikkyum react. - idhoru most effient method thanne aan.
   // but some time i want to control that re-render . so i use 'React.memo' feature in React;
@@ -9,7 +9,7 @@ const JustInfo = ({status})=>{
 
   console.log('just info')
     return (
-        <div className="border p-3 m-2">
+        <div onClick={onAction} className="border p-3 m-2">
           <h1>Just info : {status} data`s</h1>     
         </div>
     );

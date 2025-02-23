@@ -2,7 +2,11 @@ import Label from "./Label";
 
 
 
+
 const ListItem = ({title,desc,isActive, onDelete ,onAction}) => {
+
+
+ 
 
   return (
     <>
@@ -15,6 +19,8 @@ const ListItem = ({title,desc,isActive, onDelete ,onAction}) => {
         <div className="list-label d-flex gap-2 py-2">
             <Label isActive={isActive} onAction={onAction}/>
         </div>
+
+        
       </div>
     </>
   );

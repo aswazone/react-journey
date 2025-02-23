@@ -1,4 +1,5 @@
 import { useContext, useMemo, useRef, useState } from "react";
+import Tooltip from "./Tooltip";
 import { LabelContext } from "../context/LabelContext";
 
 const Label = (props) => {
@@ -44,7 +45,6 @@ const Label = (props) => {
   return (
     <>
       <span
-        ref={labelRef}
         onClick={() => props.onAction(props.isActive ? "Active" : "Inactive")}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -52,9 +52,7 @@ const Label = (props) => {
       >
         {props.isActive ? "Active" : "Inactive"}
       </span>
-      <label className={`shadow-sm border px-1 ${tooltip ? "show" : "fade"}`}>
-        {`This is ${props.isActive ? "Active" : "Inactive"} tooltip !`}
-      </label>
+      <Tooltip ref={labelRef} tooltip={tooltip} isActive={props.isActive}/>
     </>
   );
 };
